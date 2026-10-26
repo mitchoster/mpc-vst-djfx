@@ -2,7 +2,7 @@
 
 Three milestones, in order. Each one is done when the stated result exists, not when the work starts.
 
-## 1. A release you can install without a compiler
+## 1. A release you can install without a compiler — done 2026-10-26
 
 Today the only way to run this plugin is to build it: Docker, an arm32v7 toolchain chain and a
 framework checkout. That excludes anyone who just wants to try the effect.
@@ -12,7 +12,10 @@ framework checkout. That excludes anyone who just wants to try the effect.
 - A signed-off device test on the artifact itself, not on a local build.
 - A GitHub release for v1.0.0 with that zip attached.
 
-Done when a person with an MPC and root SSH can install the release without building anything.
+Done: the [v1.0.0 release](https://github.com/mitchoster/mpc-vst-djfx/releases/tag/v1.0.0) carries the
+zip, and `catalog_check.py` reports no warnings. The zip packages the exact `.so` built on 2026-10-15
+that ran on the device; reinstalling the zip itself on a second unit is still open and belongs to
+milestone 3.
 
 ## 2. DjFx2 in this repository
 

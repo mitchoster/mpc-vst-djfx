@@ -44,16 +44,26 @@ Rendered from the layout, no device needed (`vst/preview.sh`):
 | 0 | ![](docs/ui-preview/page_0.png) |
 | 1 | ![](docs/ui-preview/page_1.png) |
 
+## Install
+
+Download the zip from [Releases](https://github.com/mitchoster/mpc-vst-djfx/releases), unpack it on the
+device and run `install.sh` as root. The installer stops MPC, backs up `MPC.settings`, copies the plugin
+folder and restarts MPC. `uninstall.sh` reverses it.
+
+The release is built for **MPC OS 3.x only**. Its skin uses TUI format version 2, which MPC OS 2.x cannot
+read: the plugin would load, but its touchscreen pages would not appear.
+
+Requirements: an MPC or Force with root SSH enabled.
+
 ## Status
 
 **v1.0.0, frozen.** Device tested on an MPC Live II running MPC OS 3.9.1.2 (2026-10-15, recorded in
-`tested.json`).
+`tested.json`). The release artifact was packaged on 2026-10-26 and passes the framework's catalog checks
+(`catalog_check.py`, no warnings).
 
 A successor is in development (`DjFx2`, uid `DjF2`, a separate plugin). It adds the original rack's
 grain stage, a true-peak limiter and a moving fade band. v1 stays frozen on purpose: it stays
 installed on the device so both versions can be compared side by side. See [ROADMAP.md](ROADMAP.md).
-
-There is no prebuilt release yet. Building from source is milestone 1 of the roadmap.
 
 ## Build
 
