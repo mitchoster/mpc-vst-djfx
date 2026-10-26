@@ -44,6 +44,40 @@ Rendered from the layout, no device needed (`vst/preview.sh`):
 | 0 | ![](docs/ui-preview/page_0.png) |
 | 1 | ![](docs/ui-preview/page_1.png) |
 
+## Status
+
+**v1.0.1, frozen.** Device tested on an MPC Live II running MPC OS 3.9.1.2 (2026-10-26, recorded in
+`tested.json`). The release artifact passes the framework's catalog checks (`catalog_check.py`, no warnings)
+and carries the CPU measurement below.
+
+1.0.1 is a wrapper change only: the plugin now tells the framework's bench which of its parameters are
+one-shot triggers, so `panic` is measured as a tap instead of being swept like a knob. The audio path is
+unchanged.
+
+A successor is in development (`DjFx2`, uid `DjF2`, a separate plugin). It adds the original rack's
+grain stage, a true-peak limiter and a moving fade band. v1 stays frozen on purpose: it stays
+installed on the device so both versions can be compared side by side. See [ROADMAP.md](ROADMAP.md).
+
+## CPU
+
+Measured on the device with the framework's bench (128 frames at 44.1 kHz = 2902 µs per block), on the
+same binary this release ships (md5 `6d7f8a12bc098764a27baa7330ceab48`):
+
+| Stage | mean | p99 | worst block |
+| --- | --- | --- | --- |
+| idle | 5.7 % | 6.6 % | 8.1 % |
+| audio in | 5.7 % | 6.4 % | 8.3 % |
+| Q-Link sweep | 6.6 % | 7.4 % | 7.8 % |
+| release tail | 6.0 % | 6.6 % | 7.2 % |
+| trigger fire (`panic`) | 6.8 % | 35.6 % | 64.4 % |
+
+**Verdict: PASS.** Several instances run alongside a normal project.
+
+The last row is the panic button, fired once. It clears the delay and repeat buffers (about 9 MB) across
+three staged blocks with the output muted, which is what a panic button is for. That cost belongs to the
+trigger, not to the controls, so the bench reports it in its own stage and it does not decide the verdict.
+Riding the Q-Links costs 7.4 % p99.
+
 ## Install
 
 Download the zip from [Releases](https://github.com/mitchoster/mpc-vst-djfx/releases), unpack it on the
@@ -54,16 +88,6 @@ The release is built for **MPC OS 3.x only**. Its skin uses TUI format version 2
 read: the plugin would load, but its touchscreen pages would not appear.
 
 Requirements: an MPC or Force with root SSH enabled.
-
-## Status
-
-**v1.0.0, frozen.** Device tested on an MPC Live II running MPC OS 3.9.1.2 (2026-10-15, recorded in
-`tested.json`). The release artifact was packaged on 2026-10-26 and passes the framework's catalog checks
-(`catalog_check.py`, no warnings).
-
-A successor is in development (`DjFx2`, uid `DjF2`, a separate plugin). It adds the original rack's
-grain stage, a true-peak limiter and a moving fade band. v1 stays frozen on purpose: it stays
-installed on the device so both versions can be compared side by side. See [ROADMAP.md](ROADMAP.md).
 
 ## Build
 
