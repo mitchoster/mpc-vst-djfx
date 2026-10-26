@@ -4,7 +4,7 @@ A one-slot live DJ effect for Akai MPC and Force standalone devices: 3-band isol
 beat repeat, delay, reverb, through-zero flanger and a limiter, plus one macro knob that moves a
 curated set of them together.
 
-![MPC DJ FX running on an MPC Live II](docs/screen-after.png)
+![MPC DJ FX panel](docs/img/panel.png)
 
 ## The problem
 
