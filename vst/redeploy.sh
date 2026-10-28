@@ -12,7 +12,7 @@ set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"     # .../vst
 MV="${MPC_VST_PLUGINS:?set MPC_VST_PLUGINS to a checkout of sd88me/mpc-vst-plugins}"
 DEVICE="${DEVICE:?set DEVICE to the MPC IP address}"
-FOLDER="MPCDJ - VST - MPC DJ FX"
+FOLDER="LarryDaimond - VST - MPC DJ FX"
 SO="mpc_djfx.so"
 
 echo "== 1/2 build (skin + .so) =="

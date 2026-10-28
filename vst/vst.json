@@ -1,6 +1,6 @@
 {
   "name": "MPC DJ FX",
-  "vendor": "MPCDJ",
+  "vendor": "LarryDaimond",
   "uid": "DjFx",
   "version": 1000,
   "so": "mpc_djfx.so",

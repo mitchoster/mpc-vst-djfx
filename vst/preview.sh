@@ -6,7 +6,7 @@ set -euo pipefail
 HERE="$(cd "$(dirname "$0")" && pwd)"          # .../vst
 PROJECT="$(cd "$HERE/.." && pwd)"              # the port (contains docs/)
 MV="${MPC_VST_PLUGINS:?set MPC_VST_PLUGINS to a checkout of sd88me/mpc-vst-plugins}"
-FOLDER="MPCDJ - VST - MPC DJ FX"
+FOLDER="LarryDaimond - VST - MPC DJ FX"
 
 echo "== build skin =="
 "$MV/tools/build_port.sh" "$HERE/vst.json" >/dev/null
